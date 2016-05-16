@@ -18,7 +18,6 @@
 #include "ElectricalGripperROS.h"
 #include "EncoderInputROS.h"
 #include "GrapplerROS.h"
-// #include "KinectROS.h"
 #include "MotorArrayROS.h"
 #include "NorthStarROS.h"
 #include "OmniDriveROS.h"
@@ -40,9 +39,6 @@ private:
 
 	std::string hostname_;
 	double max_linear_vel_, min_linear_vel_, max_angular_vel_, min_angular_vel_;
-	bool downsample_kinect_;
-	double leaf_size_kinect_;
-
 	std::vector<float> motor_velocities_;
 	std::vector<int> motor_positions_;
 
@@ -64,9 +60,8 @@ private:
 	ElectricalGripperROS electrical_gripper_;
 	EncoderInputROS encoder_input_;
 	GrapplerROS grappler_;
-	// KinectROS kinect_;
 	MotorArrayROS motor_array_;
-	NorthStarROS north_star_;
+	//NorthStarROS north_star_;
 	OmniDriveROS omni_drive_;
 	PowerManagementROS power_management_;
 

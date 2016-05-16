@@ -15,8 +15,6 @@ RobotinoNode::RobotinoNode()
 	nh_.param<double>("min_linear_vel", min_linear_vel_, 0.05 );
 	nh_.param<double>("max_angular_vel", max_angular_vel_, 1.0 );
 	nh_.param<double>("min_angular_vel", min_angular_vel_, 0.1 );
-	nh_.param<bool>("downsample_kinect", downsample_kinect_, true );
-	nh_.param<double>("leaf_size_kinect", leaf_size_kinect_, 0.05 );
 
 	distances_clearing_pub_ = nh_.advertise<sensor_msgs::PointCloud>("/distance_sensors_clearing", 1, true);
 	joint_states_pub_= nh_.advertise<sensor_msgs::JointState>("/robotino_joint_states", 1, false);
@@ -47,17 +45,11 @@ void RobotinoNode::initModules()
 	electrical_gripper_.setComId( com_.id() );
 	encoder_input_.setComId( com_.id() );
 	grappler_.setComId( com_.id() );
-	// kinect_.setComId( com_.id() );
 	motor_array_.setComId( com_.id() );
-	north_star_.setComId( com_.id() );
+    //north_star_.setComId( com_.id() );
 	omni_drive_.setComId( com_.id() );
 	power_management_.setComId( com_.id() );
-
 	omni_drive_.setMaxMin(max_linear_vel_, min_linear_vel_, max_angular_vel_, min_angular_vel_ );
-
-	// kinect_.setDownsample( downsample_kinect_ );
-	// kinect_.setLeafSize( leaf_size_kinect_ );
-
 	com_.connectToServer( false );
 }
 
@@ -127,9 +119,8 @@ bool RobotinoNode::spin()
 		electrical_gripper_.setTimeStamp(curr_time_);
 		encoder_input_.setTimeStamp(curr_time_);
 		grappler_.setTimeStamp(curr_time_);
-		// kinect_.setTimeStamp(curr_time_);
 		motor_array_.setTimeStamp(curr_time_);
-		north_star_.setTimeStamp(curr_time_);
+        //north_star_.setTimeStamp(curr_time_);
 		power_management_.setTimeStamp(curr_time_);
 
 		publishDistanceMsg();
