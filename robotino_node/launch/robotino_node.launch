@@ -1,40 +1,52 @@
-<launch>
+  <launch>
   <arg name="hostname" default="172.26.1.1" />
-  
-	<node name="robotino_node" pkg="robotino_node" type="robotino_node" output="screen">
-		<param name="hostname" value="$(arg hostname)" />
-		<param name="max_linear_vel" value="0.5" />
-		<param name="min_linear_vel" value="0.05" />
-		<param name="max_angular_vel" value="3.0" />
-		<param name="min_angular_vel" value="0.1" />
-		<param name="downsample_kinect" value="true" />
-		<param name="leaf_size_kinect" value="0.04" />
-		<remap from="robotino_joint_states" to="joint_states" />
-		<!--remap from="image_raw" to="image"/-->
-	</node>
+
+  <node name="robotino_node" pkg="robotino_node" type="robotino_node" output="screen">
+    <param name="hostname" value="$(arg hostname)" />
+    <param name="max_linear_vel" value="0.5" />
+    <param name="min_linear_vel" value="0.05" />
+    <param name="max_angular_vel" value="3.0" />
+    <param name="min_angular_vel" value="0.1" />
+  </node>
 
   <node name="robotino_odometry_node" pkg="robotino_node" type="robotino_odometry_node" output="screen">
     <param name="hostname" value="$(arg hostname)" />
   </node>
 
+  <node  pkg="hokuyo_node" name="hokuyo_node" type="hokuyo_node" output="screen">
+    <param name="min_ang" value="-1.74533" />
+    <param name="max_ang" value="1.74533" />
+    <param name="calibrate_time" value="false" />
+    <param name="port" value="/dev/ttyACM0" />
+    <param name="intensity" value="false" />
+    <remap from="/scan" to="/hardware/scan" />
+  </node>
+
+<!--  old version
   <node name="robotino_laserrangefinder_node" pkg="robotino_node" type="robotino_laserrangefinder_node" output="screen">
     <param name="hostname" value="$(arg hostname)" />
     <param name="laserRangeFinderNumber" value="0" />
   </node>
-
+-->
+  <node pkg="usb_cam" name="usb_cam" type="usb_cam_node" output="screen" >
+    <param name="video_device" value="/dev/video0" />
+    <param name="framerate" value="30" />
+    <param name="image_width" value="480" />
+    <param name="image_height" value="640" />
+    <param name="pixel_format" value="mjpeg" />
+    <param name="camera_frame_id" value="usb_cam" />
+    <param name="io_method" value="mmap"/>
+  </node>
+<!--
   <node name="robotino_camera_node" pkg="robotino_node" type="robotino_camera_node" output="screen">
     <param name="hostname" value="$(arg hostname)" />
     <param name="cameraNumber" value="0" />
   </node>
-	
-	<node pkg="robot_state_publisher" type="state_publisher" name="robot_state_publisher" output="screen">
-    	<param name="publish_frequency" type="double" value="20.0" />
-  	</node>
-  	
-  <node name="robotino_mapping_node" pkg="robotino_node" type="robotino_mapping_node" output="screen">
-    <param name="hostname" value="$(arg hostname)" />
+-->
+
+  <node pkg="robot_state_publisher" type="state_publisher" name="robot_state_publisher" output="screen">
+    <param name="publish_frequency" type="double" value="20.0" />
   </node>
-  	<!--node pkg="tf" type="static_transform_publisher" name="laser_link_broadcaster" args="0.12 0 0.025 0 0 0 base_link laser_link 50" /-->
-  	
-  	<param name="robot_description" textfile="$(find robotino_description)/urdf/robotino.urdf" />
+
+  <param name="robot_description" textfile="$(find robotino_description)/urdf/robotino.urdf" />
 </launch>
