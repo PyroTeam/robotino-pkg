@@ -21,5 +21,7 @@
 
 		<!-- Remap topic -->
 		<remap from="cmd_vel" to="$(arg robot)/hardware/cmd_vel" />
+		<!-- Remap service -->
+		<remap from="gripper_srv" to="$(arg robot)/hardware/low_level/gripper_srv" />
 	</node>
 </launch>

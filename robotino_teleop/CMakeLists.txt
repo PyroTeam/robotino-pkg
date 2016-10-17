@@ -8,6 +8,7 @@ find_package(catkin REQUIRED COMPONENTS
   geometry_msgs
   robotino_node
   sensor_msgs roscpp roslib
+  gripper_msg
 )
 set(CMAKE_MODULE_PATH /usr/local/robotino/api2/cmake)
 
@@ -117,6 +118,12 @@ target_link_libraries(
   joystick_teleop_node
   ${REC_ROBOTINO_API2_LIBRARY}
   ${catkin_LIBRARIES}
+)
+
+add_dependencies(
+	joystick_teleop_node
+
+	${catkin_EXPORTED_TARGETS}
 )
 
 add_executable(
