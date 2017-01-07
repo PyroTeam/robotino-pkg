@@ -14,8 +14,8 @@ JoystickTeleop::JoystickTeleop()
 {
 	cmd_vel_pub_ = nh_.advertise<geometry_msgs::Twist>("/cmd_vel", 1, true);
 	joy_sub_ = nh_.subscribe("/joy", 1, &JoystickTeleop::joyCallback, this);
-	m_gripper_client = nh_.serviceClient<gripper_msg::Grip>("/gripper_srv");
-	m_last_req.cmd = gripper_msg::GripRequest::NOTHING;
+	m_gripper_client = nh_.serviceClient<robotino_msgs::Grip>("/gripper_srv");
+	m_last_req.cmd = robotino_msgs::GripRequest::NOTHING;
 
 	readParams( nh_ );
 }
@@ -54,16 +54,16 @@ void JoystickTeleop::joyCallback( const sensor_msgs::JoyConstPtr& msg)
 	// Click on Right-1 button - have priority on L1 click
 	if (m_last_r1 != msg->buttons[m_button_r1] && msg->buttons[m_button_r1])
 	{
-		m_gripper_srv.request.cmd = gripper_msg::GripRequest::TAKE;
+		m_gripper_srv.request.cmd = robotino_msgs::GripRequest::TAKE;
 	}
 	// Click on Left-1 button
 	else if (m_last_l1 != msg->buttons[m_button_l1] && msg->buttons[m_button_l1])
 	{
-		m_gripper_srv.request.cmd = gripper_msg::GripRequest::LET;
+		m_gripper_srv.request.cmd = robotino_msgs::GripRequest::LET;
 	}
 	else
 	{
-		m_gripper_srv.request.cmd = gripper_msg::GripRequest::NOTHING;
+		m_gripper_srv.request.cmd = robotino_msgs::GripRequest::NOTHING;
 	}
 	m_last_r1 = (bool)msg->buttons[m_button_r1];
 	m_last_l1 = (bool)msg->buttons[m_button_l1];
@@ -78,7 +78,7 @@ void JoystickTeleop::spin()
 		ros::spinOnce();
 		loop_rate.sleep();
 		if (m_gripper_srv.request.cmd != m_last_req.cmd
-			&& m_gripper_srv.request.cmd != gripper_msg::GripRequest::NOTHING)
+			&& m_gripper_srv.request.cmd != robotino_msgs::GripRequest::NOTHING)
 		{
 			m_gripper_client.call(m_gripper_srv);
 		}
