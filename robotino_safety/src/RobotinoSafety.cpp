@@ -135,7 +135,10 @@ void RobotinoSafety::scanCallback(const sensor_msgs::LaserScanConstPtr& msg)
 
 	try
 	{
-		tfListener_.waitForTransform("/base_link", "/laser_link", ros::Time(0), ros::Duration(1.0));
+		tfListener_.waitForTransform("/base_link",
+                msg->header.frame_id,
+                msg->header.stamp + ros::Duration().fromSec(msg->ranges.size()*msg->time_increment),
+                ros::Duration(1.0));
 		projector_.transformLaserScanToPointCloud("/base_link", *msg, cloud, tfListener_);
 	}
 	catch(tf::LookupException& ex)

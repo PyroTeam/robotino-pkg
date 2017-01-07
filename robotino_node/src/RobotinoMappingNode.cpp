@@ -5,9 +5,9 @@ RobotinoMappingNode::RobotinoMappingNode()
 {
 	nh_.param<std::string>("hostname", hostname_, "192.168.5.5" );
 
-	com_.setName( "Mapping" );
+    com_.setName( "Mapping" );
 
-	initModules();
+    initModules();
 }
 
 RobotinoMappingNode::~RobotinoMappingNode()
@@ -32,11 +32,11 @@ bool RobotinoMappingNode::spin()
 
 	while(nh_.ok())
 	{
-		ros::Time curr_time = ros::Time::now();
-		mappingRos_.setTimeStamp(curr_time);
+        ros::Time curr_time = ros::Time::now();
+        mappingRos_.setTimeStamp(curr_time);
 
-		com_.processEvents();
-		ros::spinOnce();
+        com_.processEvents();
+        ros::spinOnce();
 		loop_rate.sleep();
 	}
 	return true;

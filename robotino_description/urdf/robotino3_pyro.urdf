@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<robot name="robotino" >
+  <link name="base_link">
+    <inertial>
+      <mass value="20"/>
+      <origin xyz="0 0 0"/>
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 3.1416" xyz="0.01 0 0"/>
+      <geometry>
+        <mesh filename="package://robotino_description/meshes/parts/robotino3.dae" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0.025"/>
+      <geometry>
+        <cylinder length="0.05" radius="0.18"/>
+      </geometry>
+    </collision>
+  </link>
+</robot>

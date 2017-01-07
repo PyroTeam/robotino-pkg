@@ -5,6 +5,7 @@
  *      Author: indorewala@servicerobotics.eu
  */
 
+
 #include "BumperROS.h"
 
 BumperROS::BumperROS()
