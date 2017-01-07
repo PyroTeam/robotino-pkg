@@ -14,10 +14,10 @@
   <build_depend>geometry_msgs</build_depend>
   <build_depend>robotino_node</build_depend>
   <build_depend>sensor_msgs</build_depend>
-  <build_depend>gripper_msg</build_depend>
+  <build_depend>robotino_msgs</build_depend>
 
   <run_depend>geometry_msgs</run_depend>
   <run_depend>robotino_node</run_depend>
   <run_depend>sensor_msgs</run_depend>
-  <run_depend>gripper_msg</run_depend>
+  <run_depend>robotino_msgs</run_depend>
 </package>

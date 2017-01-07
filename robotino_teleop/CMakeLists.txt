@@ -8,7 +8,7 @@ find_package(catkin REQUIRED COMPONENTS
   geometry_msgs
   robotino_node
   sensor_msgs roscpp roslib
-  gripper_msg
+  robotino_msgs
 )
 set(CMAKE_MODULE_PATH /usr/local/robotino/api2/cmake)
 
