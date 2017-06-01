@@ -60,6 +60,7 @@ add_message_files(
         GripperState.msg
         PowerReadings.msg
         SetGrapplerAxis.msg
+        GyroReadings.msg
 )
 ## Generate services in the 'srv' folder
 add_service_files(

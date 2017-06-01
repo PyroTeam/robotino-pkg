@@ -1,0 +1,41 @@
+/**
+ * \file 		GyroROS.h
+ *
+ * \brief
+ *
+ * \author		Coelen Vincent (vincent.coelen@polytech-lille.net)
+ * \date		2017-05-31
+ * \copyright   2017, Association de Robotique de Polytech Lille All rights reserved
+ * \version
+ */
+
+#ifndef GYROEXTROS_H_
+#define GYROEXTROS_H_
+
+#include "rec/robotino/api2/GyroscopeExt.h"
+#include "rec/robotino/api2/GyroscopeExtReader.h"
+
+#include <ros/ros.h>
+#include "robotino_msgs/GyroReadings.h"
+
+class GyroExtROS: public rec::robotino::api2::GyroscopeExt
+{
+public:
+	GyroROS();
+	~GyroROS();
+
+	void setTimeStamp(ros::Time stamp);
+
+private:
+	ros::NodeHandle nh_;
+
+	ros::Publisher gyro_pub_;
+
+    robotino_msgs::GyroReadings gyro_msg_;
+
+	ros::Time stamp_;
+
+	void scanEvent(const rec::robotino::api2::GyroscopeExtReader &gyro);
+};
+
+#endif /* GYROEXTROS_H_ */
