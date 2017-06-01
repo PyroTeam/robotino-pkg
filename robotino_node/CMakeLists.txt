@@ -128,7 +128,7 @@ add_executable(
   src/OdometryROS.cpp
   src/OmniDriveROS.cpp
   src/PowerManagementROS.cpp
-  src/GyroROS.cpp
+  src/GyroExtROS.cpp
   src/RobotinoNode.cpp
 )
 
