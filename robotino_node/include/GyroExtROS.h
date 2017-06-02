@@ -1,5 +1,5 @@
 /**
- * \file 		GyroROS.h
+ * \file 		GyroExtROS.h
  *
  * \brief
  *
@@ -13,7 +13,6 @@
 #define GYROEXTROS_H_
 
 #include "rec/robotino/api2/GyroscopeExt.h"
-#include "rec/robotino/api2/GyroscopeExtReader.h"
 
 #include <ros/ros.h>
 #include "robotino_msgs/GyroReadings.h"
@@ -21,8 +20,8 @@
 class GyroExtROS: public rec::robotino::api2::GyroscopeExt
 {
 public:
-	GyroROS();
-	~GyroROS();
+	GyroExtROS();
+	~GyroExtROS();
 
 	void setTimeStamp(ros::Time stamp);
 
@@ -35,7 +34,7 @@ private:
 
 	ros::Time stamp_;
 
-	void scanEvent(const rec::robotino::api2::GyroscopeExtReader &gyro);
+	void gyroEvent(const rec::robotino::api2::GyroscopeExt &gyro);
 };
 
 #endif /* GYROEXTROS_H_ */
