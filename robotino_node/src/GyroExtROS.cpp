@@ -35,4 +35,5 @@ void GyroExtROS::gyroscopeExtEvent(float angle, float rate)
     gyro_msg_.angle = angle;
     gyro_msg_.rate = rate;
 
+    gyro_pub_.publish(gyro_msg_);
 }
