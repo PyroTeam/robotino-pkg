@@ -34,7 +34,7 @@ private:
 
 	ros::Time stamp_;
 
-	void gyroEvent(const rec::robotino::api2::GyroscopeExt &gyro);
+	void gyroscopeExtEvent(float angle, float rate);
 };
 
 #endif /* GYROEXTROS_H_ */

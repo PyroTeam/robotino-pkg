@@ -26,13 +26,13 @@ void GyroExtROS::setTimeStamp(ros::Time stamp)
 	stamp_ = stamp;
 }
 
-void GyroExtROS::gyroEvent(const rec::robotino::api2::GyroscopeExt &gyro)
+void GyroExtROS::gyroscopeExtEvent(float angle, float rate)
 {
 	// Build the Gyro message
 	gyro_msg_.header.stamp = stamp_;
 	gyro_msg_.header.frame_id = "base_link";
 
-    gyro_msg_.angle = gyro.angle();
-    gyro_msg_.rate = gyro.rate();
+    gyro_msg_.angle = angle;
+    gyro_msg_.rate = rate;
 
 }
