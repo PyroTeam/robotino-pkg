@@ -11,7 +11,7 @@ find_package(catkin REQUIRED COMPONENTS
   tf
 )
 
-set(CMAKE_MODULE_PATH /usr/local/robotino/api2/cmake)
+set(CMAKE_MODULE_PATH /opt/robotino/cmake)
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
 find_package(RobotinoAPI2)
@@ -176,22 +176,6 @@ add_executable(
 
 target_link_libraries(
   robotino_camera_node
-  ${REC_ROBOTINO_API2_LIBRARY}
-  ${catkin_LIBRARIES}
-)
-
-add_executable(
-  robotino_mapping_node
-  src/robotino_mapping_node.cpp
-  src/MappingROS.cpp
-  src/RobotinoMappingNode.cpp
-  src/InitialPoseROS.cpp
-  src/NavGoalROS.cpp
-  src/ComROS.cpp
-)
-
-target_link_libraries(
-  robotino_mapping_node
   ${REC_ROBOTINO_API2_LIBRARY}
   ${catkin_LIBRARIES}
 )

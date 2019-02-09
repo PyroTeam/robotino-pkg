@@ -31,12 +31,17 @@ void OdometryROS::readingsEvent(double x, double y, double phi,
 		float vx, float vy, float omega, unsigned int sequence )
 {
 	geometry_msgs::Quaternion phi_quat = tf::createQuaternionMsgFromYaw( phi );
+	ros::NodeHandle nhp("~");
+	std::string odom_frame_id;
+	std::string base_link_frame_id;
+	nhp.param<std::string>("odom_frame_id", odom_frame_id, "odom");
+	nhp.param<std::string>("base_link_frame_id", base_link_frame_id, "base_link");
 
 	// Construct messages
 	odometry_msg_.header.seq = sequence;
-	odometry_msg_.header.frame_id = "odom";
+	odometry_msg_.header.frame_id = odom_frame_id;
 	odometry_msg_.header.stamp = stamp_;
-	odometry_msg_.child_frame_id = "base_link";
+	odometry_msg_.child_frame_id = base_link_frame_id;
 	odometry_msg_.pose.pose.position.x = x ;
 	odometry_msg_.pose.pose.position.y = y ;
 	odometry_msg_.pose.pose.position.z = 0.0;
@@ -48,9 +53,9 @@ void OdometryROS::readingsEvent(double x, double y, double phi,
 	odometry_msg_.twist.twist.angular.y = 0.0;
 	odometry_msg_.twist.twist.angular.z = omega;
 
-	odometry_transform_.header.frame_id = "odom";
+	odometry_transform_.header.frame_id = odom_frame_id;
 	odometry_transform_.header.stamp = odometry_msg_.header.stamp;
-	odometry_transform_.child_frame_id = "base_link";
+	odometry_transform_.child_frame_id = base_link_frame_id;
 	odometry_transform_.transform.translation.x = x;
 	odometry_transform_.transform.translation.y = y;
 	odometry_transform_.transform.translation.z = 0.0;
