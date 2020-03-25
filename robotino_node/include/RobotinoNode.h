@@ -22,6 +22,7 @@
 #include "NorthStarROS.h"
 #include "OmniDriveROS.h"
 #include "PowerManagementROS.h"
+#include "GyroExtROS.h"
 
 #include <ros/ros.h>
 #include <sensor_msgs/PointCloud.h>
@@ -64,6 +65,7 @@ private:
 	//NorthStarROS north_star_;
 	OmniDriveROS omni_drive_;
 	PowerManagementROS power_management_;
+    GyroExtROS gyro_;
 
 	void initModules();
 	void initMsgs();

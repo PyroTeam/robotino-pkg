@@ -49,6 +49,7 @@ void RobotinoNode::initModules()
     //north_star_.setComId( com_.id() );
 	omni_drive_.setComId( com_.id() );
 	power_management_.setComId( com_.id() );
+    gyro_.setComId(com_.id());
 	omni_drive_.setMaxMin(max_linear_vel_, min_linear_vel_, max_angular_vel_, min_angular_vel_ );
 	com_.connectToServer( false );
 }
@@ -122,6 +123,7 @@ bool RobotinoNode::spin()
 		motor_array_.setTimeStamp(curr_time_);
         //north_star_.setTimeStamp(curr_time_);
 		power_management_.setTimeStamp(curr_time_);
+        gyro_.setTimeStamp(curr_time_);
 
 		publishDistanceMsg();
 		publishJointStateMsg();
@@ -131,4 +133,3 @@ bool RobotinoNode::spin()
 	}
 	return true;
 }
-
