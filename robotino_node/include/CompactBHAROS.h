@@ -32,26 +32,26 @@ private:
 
     ros::ServiceServer set_compressor_enabled_server_;
 
-    /* TODO(vcoelen) : add these functionnalities (cf CompactBHA.h in API2 source)
-    setWaterDrainValve
-    setGripperValve1
-    setGripperValve2
-    */
+	/* TODO(vcoelen) : add these functionnalities (cf CompactBHA.h in API2 source)
+	setWaterDrainValve
+	setGripperValve1
+	setGripperValve2
+	*/
 
     robotino_msgs::BHAReadings bha_msg_;
 
 	ros::Time stamp_;
 
 	void pressuresChangedEvent( const float* pressures, unsigned int size );
-    void pressureSensorChangedEvent( bool pressureSensor );
-    void stringPotsChangedEvent( const float* readings, unsigned int size );
-    void foilPotChangedEvent( float value );
+	void pressureSensorChangedEvent( bool pressureSensor );
+	void stringPotsChangedEvent( const float* readings, unsigned int size );
+	void foilPotChangedEvent( float value );
 
 	void setBHAPressuresCallback( const robotino_msgs::SetBHAPressuresConstPtr &msg);
 
-    bool setCompressorsEnabledService(
-        robotino_msgs::SetCompressorsEnabled::Request &req,
-        robotino_msgs::SetCompressorsEnabled::Response &res);
+	bool setCompressorsEnabledService(
+		robotino_msgs::SetCompressorsEnabled::Request &req,
+		robotino_msgs::SetCompressorsEnabled::Response &res);
 };
 
 #endif /* COMPACTBHAROS_H_ */

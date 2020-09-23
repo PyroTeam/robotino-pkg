@@ -11,7 +11,7 @@ CompactBHAROS::CompactBHAROS()
 {
 	bha_pub_ = nh_.advertise<robotino_msgs::BHAReadings>("bha_readings", 1, true);
 	bha_sub_ = nh_.subscribe("set_bha_pressures", 1, &CompactBHAROS::setBHAPressuresCallback, this);
-    set_compressor_enabled_server_ = nh_.advertiseService("set_compressor_enabled",
+	set_compressor_enabled_server_ = nh_.advertiseService("set_compressor_enabled",
 			&CompactBHAROS::setCompressorsEnabledService, this);
 }
 
@@ -39,7 +39,7 @@ void CompactBHAROS::pressuresChangedEvent( const float* pressures, unsigned int 
 
 void CompactBHAROS::pressureSensorChangedEvent( bool pressureSensor )
 {
-    bha_msg_.pressureSensor = pressureSensor;
+	bha_msg_.pressureSensor = pressureSensor;
 }
 
 void CompactBHAROS::stringPotsChangedEvent( const float* readings, unsigned int size )
@@ -57,7 +57,7 @@ void CompactBHAROS::stringPotsChangedEvent( const float* readings, unsigned int 
 
 void CompactBHAROS::foilPotChangedEvent( float value )
 {
-    bha_msg_.foilPot = value;
+	bha_msg_.foilPot = value;
 }
 
 
@@ -80,9 +80,9 @@ void CompactBHAROS::setBHAPressuresCallback(const robotino_msgs::SetBHAPressures
 
 
 bool CompactBHAROS::setCompressorsEnabledService(
-    robotino_msgs::SetCompressorsEnabled::Request &req,
-    robotino_msgs::SetCompressorsEnabled::Response &res)
+	robotino_msgs::SetCompressorsEnabled::Request &req,
+	robotino_msgs::SetCompressorsEnabled::Response &res)
 {
-    setCompressorsEnabled( req.enable );
-    return true;
+	setCompressorsEnabled( req.enable );
+	return true;
 }
