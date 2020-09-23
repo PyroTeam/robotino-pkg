@@ -1,3 +1,5 @@
 time stamp
 float32[] pressures	# in bar
-float32[] cablepull
+bool pressureSensor
+float32[] stringPots
+float32 foilPot

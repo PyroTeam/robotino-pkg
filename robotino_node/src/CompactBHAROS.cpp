@@ -37,31 +37,27 @@ void CompactBHAROS::pressuresChangedEvent( const float* pressures, unsigned int 
 	}
 }
 
-// void CompactBHAROS::cablepullChangedEvent( const float* cablepull, unsigned int size )
-// {
-// 	// Build the BHAReadings msg
-// 	bha_msg_.cablepull.resize( size, 0.0 );
-// 	if( cablepull != NULL )
-// 	{
-// 		memcpy( bha_msg_.cablepull.data(), cablepull, size * sizeof(float) );
-// 	}
-//
-// 	// Publish the msg
-// 	bha_pub_.publish( bha_msg_ );
-// }
 void CompactBHAROS::pressureSensorChangedEvent( bool pressureSensor )
 {
-
+    bha_msg_.pressureSensor = pressureSensor;
 }
 
 void CompactBHAROS::stringPotsChangedEvent( const float* readings, unsigned int size )
 {
+	// Build the BHAReadings msg
+	bha_msg_.stringPots.resize( size, 0.0 );
+	if( readings != NULL )
+	{
+		memcpy( bha_msg_.stringPots.data(), readings, size * sizeof(float) );
+	}
 
+	// Publish the msg
+	bha_pub_.publish( bha_msg_ );
 }
 
 void CompactBHAROS::foilPotChangedEvent( float value )
 {
-
+    bha_msg_.foilPot = value;
 }
 
 
